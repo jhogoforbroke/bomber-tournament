@@ -96,6 +96,21 @@ describe('T7: Bomberman Arcade HTML Layout, Retro Pixel CSS and SVG Sprites', ()
     assert.equal(formContent.includes('<select'), false);
   });
 
+  it('GRAPH-C1: index.html includes bracket-graph tab button, section, podium banner, and download button', async () => {
+    const res = await fetch(`${baseUrl}/`);
+    assert.equal(res.status, 200);
+    const html = await res.text();
+
+    assert.match(
+      html,
+      /<button[^>]*class="tab-btn"[^>]*data-tab="bracket-graph"[^>]*>6\.\s*GRÁFICO DO TORNEIO<\/button>/i
+    );
+    assert.ok(html.includes('id="bracket-graph-section"'));
+    assert.ok(html.includes('id="download-bracket-image-btn"'));
+    assert.ok(html.includes('id="bracket-podium-banner"'));
+    assert.ok(html.includes('id="bracket-graph-container"'));
+  });
+
   it('serves styles.css with Bomberman arcade pixel typography, 8-color palette tokens, and responsive rules', async () => {
     const res = await fetch(`${baseUrl}/styles.css`);
     assert.equal(res.status, 200);
@@ -126,5 +141,29 @@ describe('T7: Bomberman Arcade HTML Layout, Retro Pixel CSS and SVG Sprites', ()
     assert.ok(css.includes('@media'), 'Expected responsive @media query in styles.css');
     assert.ok(css.includes('.match-card'), 'Expected .match-card styling in styles.css');
     assert.ok(css.includes('.finalist-card'), 'Expected .finalist-card styling in styles.css');
+  });
+
+  it('serves bracket graph tree and Top 4 podium highlight CSS rules in styles.css', async () => {
+    const res = await fetch(`${baseUrl}/styles.css`);
+    assert.equal(res.status, 200);
+    const css = await res.text();
+
+    const requiredSelectors = [
+      '.podium-banner',
+      '.podium-grid',
+      '.podium-card',
+      '.podium-place-1',
+      '.podium-place-2',
+      '.podium-place-3',
+      '.podium-place-4',
+      '.bracket-graph-tree',
+      '.graph-track',
+      '.graph-round-column',
+      '.graph-node',
+      '.graph-connector-badge'
+    ];
+    for (const selector of requiredSelectors) {
+      assert.ok(css.includes(selector), `Expected CSS selector ${selector} in styles.css`);
+    }
   });
 });

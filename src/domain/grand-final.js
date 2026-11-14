@@ -34,12 +34,63 @@ export function initGrandFinal(tournament, winnersFinalistIds, losersFinalistIds
   tournament.grandFinal = {
     status: 'READY',
     finalists,
-    history: []
+    history: [],
+    podium: []
   };
   tournament.status = 'GRAND_FINAL';
   tournament.championId = null;
   tournament.updatedAt = new Date().toISOString();
   return tournament.grandFinal;
+}
+
+export function computeGrandFinalPodium(tournament) {
+  if (
+    !tournament ||
+    tournament.status !== 'COMPLETED' ||
+    !tournament.championId ||
+    !Array.isArray(tournament.grandFinal?.finalists) ||
+    tournament.grandFinal.finalists.length === 0
+  ) {
+    return [];
+  }
+
+  const playersById = new Map((tournament.players || []).map((p) => [p.id, p]));
+  const finalists = tournament.grandFinal.finalists;
+  const championFinalist = finalists.find((f) => f.playerId === tournament.championId);
+  if (!championFinalist) {
+    return [];
+  }
+
+  const others = finalists
+    .filter((f) => f.playerId !== tournament.championId)
+    .sort((a, b) => {
+      if (b.wins !== a.wins) {
+        return b.wins - a.wins;
+      }
+      const originWeightA = a.origin === 'WINNERS' ? 0 : 1;
+      const originWeightB = b.origin === 'WINNERS' ? 0 : 1;
+      if (originWeightA !== originWeightB) {
+        return originWeightA - originWeightB;
+      }
+      const seedA = playersById.get(a.playerId)?.seed ?? Number.MAX_SAFE_INTEGER;
+      const seedB = playersById.get(b.playerId)?.seed ?? Number.MAX_SAFE_INTEGER;
+      return seedA - seedB;
+    });
+
+  const ordered = [championFinalist, ...others];
+  return ordered.map((f, idx) => {
+    const player = playersById.get(f.playerId);
+    return {
+      place: idx + 1,
+      playerId: f.playerId,
+      name: player?.name || f.playerId,
+      color: player?.color || 'white',
+      seed: player?.seed ?? idx + 1,
+      origin: f.origin,
+      wins: f.wins,
+      targetWins: f.targetWins
+    };
+  });
 }
 
 export function recordGrandFinalWin(tournament, playerId) {
@@ -74,6 +125,7 @@ export function recordGrandFinalWin(tournament, playerId) {
         p.status = f.playerId === playerId ? 'CHAMPION' : 'ELIMINATED';
       }
     }
+    tournament.grandFinal.podium = computeGrandFinalPodium(tournament);
   }
 
   tournament.updatedAt = new Date().toISOString();
@@ -101,6 +153,7 @@ export function undoGrandFinalWin(tournament) {
     tournament.status = 'GRAND_FINAL';
     tournament.grandFinal.status = 'READY';
     tournament.championId = null;
+    tournament.grandFinal.podium = [];
 
     for (const f of tournament.grandFinal.finalists) {
       const p = tournament.players.find((pl) => pl.id === f.playerId);

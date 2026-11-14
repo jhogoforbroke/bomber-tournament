@@ -10,7 +10,8 @@ import { startTournament, recordMatchResult } from '../../src/domain/bracket.js'
 import {
   initGrandFinal,
   recordGrandFinalWin,
-  undoGrandFinalWin
+  undoGrandFinalWin,
+  computeGrandFinalPodium
 } from '../../src/domain/grand-final.js';
 
 function createTournamentAtGrandFinal() {
@@ -149,5 +150,93 @@ describe('T3: Grand Final Handicap Engine', () => {
       () => undoGrandFinalWin(t),
       (err) => err instanceof ValidationError && err.statusCode === 400
     );
+  });
+
+  it('GRAPH-C5: completing Grand Final computes 1st to 4th place podium ordered by wins, origin, and seed', () => {
+    const t = createTournamentAtGrandFinal();
+    assert.deepEqual(computeGrandFinalPodium(t), []);
+
+    const [w1, w2] = t.grandFinal.finalists.filter((f) => f.origin === 'WINNERS');
+    const [l1, l2] = t.grandFinal.finalists.filter((f) => f.origin === 'LOSERS');
+
+    // l1 gets 4 wins, w2 gets 2 wins, l2 gets 2 wins, w1 gets 3 wins (champion)
+    // Between w2 (2 wins, WINNERS) and l2 (2 wins, LOSERS), w2 must take 3rd place and l2 4th place
+    for (let i = 0; i < 4; i++) recordGrandFinalWin(t, l1.playerId);
+    for (let i = 0; i < 2; i++) recordGrandFinalWin(t, w2.playerId);
+    for (let i = 0; i < 2; i++) recordGrandFinalWin(t, l2.playerId);
+    for (let i = 0; i < 3; i++) recordGrandFinalWin(t, w1.playerId);
+
+    assert.equal(t.status, 'COMPLETED');
+    assert.ok(Array.isArray(t.grandFinal.podium));
+    assert.equal(t.grandFinal.podium.length, 4);
+
+    assert.deepEqual(
+      t.grandFinal.podium.map((entry) => ({
+        place: entry.place,
+        playerId: entry.playerId,
+        origin: entry.origin,
+        wins: entry.wins,
+        targetWins: entry.targetWins
+      })),
+      [
+        { place: 1, playerId: w1.playerId, origin: 'WINNERS', wins: 3, targetWins: 3 },
+        { place: 2, playerId: l1.playerId, origin: 'LOSERS', wins: 4, targetWins: 6 },
+        { place: 3, playerId: w2.playerId, origin: 'WINNERS', wins: 2, targetWins: 3 },
+        { place: 4, playerId: l2.playerId, origin: 'LOSERS', wins: 2, targetWins: 6 }
+      ]
+    );
+
+    for (const entry of t.grandFinal.podium) {
+      const player = t.players.find((p) => p.id === entry.playerId);
+      assert.equal(entry.name, player.name);
+      assert.equal(entry.color, player.color);
+      assert.equal(entry.seed, player.seed);
+    }
+  });
+
+  it('GRAPH-C7: undoing final Grand Final win reverts COMPLETED to GRAND_FINAL and clears podium', () => {
+    const t = createTournamentAtGrandFinal();
+    const [w1, w2] = t.grandFinal.finalists.filter((f) => f.origin === 'WINNERS');
+    recordGrandFinalWin(t, w2.playerId);
+    recordGrandFinalWin(t, w1.playerId);
+    recordGrandFinalWin(t, w1.playerId);
+    recordGrandFinalWin(t, w1.playerId);
+
+    assert.equal(t.status, 'COMPLETED');
+    assert.equal(t.grandFinal.podium.length, 4);
+    assert.equal(t.grandFinal.podium[0].playerId, w1.playerId);
+
+    undoGrandFinalWin(t);
+    assert.equal(t.status, 'GRAND_FINAL');
+    assert.deepEqual(t.grandFinal.podium, []);
+    assert.deepEqual(computeGrandFinalPodium(t), []);
+  });
+
+  it('GRAPH-C11: non-champion finalists tied on wins and origin are ordered by ascending initial seed', () => {
+    const t = createTournamentAtGrandFinal();
+    const [w1] = t.grandFinal.finalists.filter((f) => f.origin === 'WINNERS');
+    const [l1, l2] = t.grandFinal.finalists.filter((f) => f.origin === 'LOSERS');
+
+    // Force l1 to have a larger seed than l2 to verify seed tie-breaker regardless of finalist array order
+    const pL1 = t.players.find((p) => p.id === l1.playerId);
+    const pL2 = t.players.find((p) => p.id === l2.playerId);
+    pL1.seed = 15;
+    pL2.seed = 3;
+
+    // Both l1 and l2 get 1 win (tied on wins = 1 and origin = LOSERS); w1 wins 3 rounds to become champion
+    recordGrandFinalWin(t, l1.playerId);
+    recordGrandFinalWin(t, l2.playerId);
+    recordGrandFinalWin(t, w1.playerId);
+    recordGrandFinalWin(t, w1.playerId);
+    recordGrandFinalWin(t, w1.playerId);
+
+    const podium = computeGrandFinalPodium(t);
+    assert.equal(podium.length, 4);
+    // 1st is w1 (champion), 2nd is l2 (1 win, LOSERS, seed 3), 3rd is l1 (1 win, LOSERS, seed 15), 4th is w2 (0 wins, WINNERS)
+    assert.equal(podium[0].playerId, w1.playerId);
+    assert.equal(podium[1].playerId, l2.playerId);
+    assert.equal(podium[1].seed, 3);
+    assert.equal(podium[2].playerId, l1.playerId);
+    assert.equal(podium[2].seed, 15);
   });
 });
