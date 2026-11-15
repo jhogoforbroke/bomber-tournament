@@ -169,10 +169,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] Exports `createApp({ dataDir })` and CLI entrypoint `src/server/index.js`
-- [ ] Integration tests written in `tests/integration/api-tournaments.test.js` covering tournament CRUD, player registration, shuffle/reorder, start validation (`400`), and missing ID (`404`)
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 26 tests pass across unit and integration suites
+- [x] Exports `createApp({ dataDir })` and CLI entrypoint `src/server/index.js`
+- [x] Integration tests written in `tests/integration/api-tournaments.test.js` covering tournament CRUD, player registration, shuffle/reorder, start validation (`400`), and missing ID (`404`)
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 26 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: full
