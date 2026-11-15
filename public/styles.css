@@ -1,0 +1,579 @@
+:root {
+  --font-arcade: 'Press Start 2P', 'VT323', monospace;
+  --font-body: 'Chakra Petch', system-ui, -apple-system, sans-serif;
+
+  /* Classic Bomberman 8-Player Palette Tokens */
+  --bomber-white: #f8fafc;
+  --bomber-black: #1e293b;
+  --bomber-red: #ef4444;
+  --bomber-blue: #3b82f6;
+  --bomber-green: #22c55e;
+  --bomber-yellow: #eab308;
+  --bomber-pink: #ec4899;
+  --bomber-aqua: #06b6d4;
+
+  /* Bomberman Stage / Arena Theme Tokens */
+  --arena-grass: #14532d;
+  --arena-grass-dark: #052e16;
+  --steel-pillar: #334155;
+  --brick-orange: #c2410c;
+  --blast-gold: #facc15;
+  --blast-flame: #f97316;
+  --panel-bg: #0f172a;
+  --panel-border: #475569;
+  --text-light: #f8fafc;
+  --text-muted: #cbd5e1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--arena-grass-dark);
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.12) 0%, transparent 45%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(15, 23, 42, 0.35) 0px,
+      rgba(15, 23, 42, 0.35) 32px,
+      rgba(20, 83, 45, 0.35) 32px,
+      rgba(20, 83, 45, 0.35) 64px
+    );
+  color: var(--text-light);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Header HUD */
+.arcade-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  border-bottom: 4px solid var(--blast-gold);
+  box-shadow: 0 6px 0 #020617;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hud-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.arcade-title {
+  font-family: var(--font-arcade);
+  font-size: 1.05rem;
+  color: var(--blast-gold);
+  text-shadow: 3px 3px 0 #7c2d12;
+  letter-spacing: 1px;
+}
+
+.arcade-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  font-weight: 700;
+}
+
+.status-badge {
+  font-family: var(--font-arcade);
+  font-size: 0.7rem;
+  padding: 0.6rem 0.9rem;
+  background: var(--brick-orange);
+  color: #fff;
+  border: 3px solid var(--blast-gold);
+  box-shadow: 3px 3px 0 #000;
+}
+
+/* Alert Banner */
+.alert-banner {
+  margin: 1rem 1.5rem 0;
+  padding: 0.85rem 1.2rem;
+  border: 3px solid var(--blast-gold);
+  background: #7f1d1d;
+  color: #fef2f2;
+  font-weight: 700;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.alert-banner.info {
+  background: #1e3a8a;
+}
+
+/* Arena Main Grid */
+.arena-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.25rem;
+  padding: 1.25rem 1.5rem 2.5rem;
+  align-items: start;
+}
+
+.arcade-card {
+  background: var(--panel-bg);
+  border: 4px solid var(--panel-border);
+  box-shadow: 6px 6px 0 #020617;
+  padding: 1.15rem;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 3px dashed var(--panel-border);
+}
+
+.card-header h2,
+.section-header-bar h2 {
+  font-family: var(--font-arcade);
+  font-size: 0.82rem;
+  color: var(--blast-gold);
+  line-height: 1.4;
+}
+
+.card-icon {
+  width: 26px;
+  height: 26px;
+}
+
+/* Forms & Buttons */
+.arcade-form label {
+  display: block;
+  font-family: var(--font-arcade);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input[type="text"],
+select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  background: #1e293b;
+  color: #fff;
+  border: 2px solid #64748b;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+input[type="text"]:focus,
+select:focus {
+  outline: 2px solid var(--blast-gold);
+  border-color: var(--blast-gold);
+}
+
+.btn {
+  cursor: pointer;
+  font-family: var(--font-arcade);
+  font-size: 0.62rem;
+  padding: 0.65rem 0.85rem;
+  border: 3px solid #000;
+  color: #fff;
+  background: #475569;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 0.08s ease;
+  text-transform: uppercase;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 #000;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--bomber-blue);
+}
+
+.btn-accent {
+  background: var(--bomber-green);
+}
+
+.btn-secondary {
+  background: #334155;
+}
+
+.btn-warning {
+  background: #d97706;
+}
+
+.btn-danger {
+  background: var(--bomber-red);
+}
+
+.btn-fire {
+  background: linear-gradient(180deg, var(--blast-flame), #dc2626);
+  border-color: var(--blast-gold);
+}
+
+/* Tournament Sidebar List */
+.tournament-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.tournament-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem;
+  background: #1e293b;
+  border: 2px solid #475569;
+  cursor: pointer;
+}
+
+.tournament-item.active {
+  border-color: var(--blast-gold);
+  background: #172554;
+}
+
+.tournament-item-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tournament-item-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* Phase Tabs */
+.phase-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  cursor: pointer;
+  font-family: var(--font-arcade);
+  font-size: 0.65rem;
+  padding: 0.75rem 1rem;
+  background: #1e293b;
+  color: var(--text-muted);
+  border: 3px solid #475569;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.tab-btn.active {
+  background: var(--brick-orange);
+  color: #fff;
+  border-color: var(--blast-gold);
+}
+
+/* Section Headers */
+.section-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.15rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 3px solid #334155;
+}
+
+.helper-text {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.35rem;
+}
+
+.counter-pill {
+  font-family: var(--font-arcade);
+  font-size: 0.7rem;
+  padding: 0.55rem 0.85rem;
+  background: #1e293b;
+  border: 2px solid var(--blast-gold);
+  color: var(--blast-gold);
+}
+
+/* Seeding Section */
+.seeding-controls-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.player-form {
+  display: grid;
+  grid-template-columns: 1fr 220px auto;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.quick-actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.seeding-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 0.75rem;
+}
+
+.seed-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  background: #1e293b;
+  border: 2px solid #475569;
+}
+
+.seed-player-info {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.seed-number {
+  font-family: var(--font-arcade);
+  font-size: 0.62rem;
+  color: var(--blast-gold);
+}
+
+.bomber-avatar {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.seed-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.icon-btn {
+  cursor: pointer;
+  background: #334155;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 0.25rem 0.45rem;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+/* Brackets Layout (Winners & Losers) */
+.bracket-columns {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+}
+
+.bracket-round {
+  min-width: 310px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.round-title {
+  font-family: var(--font-arcade);
+  font-size: 0.7rem;
+  padding: 0.55rem 0.75rem;
+  background: #1e293b;
+  border-left: 5px solid var(--blast-gold);
+  color: var(--blast-gold);
+}
+
+.match-card {
+  background: #1e293b;
+  border: 3px solid #475569;
+  padding: 0.85rem;
+  box-shadow: 4px 4px 0 #020617;
+}
+
+.match-card.status-READY {
+  border-color: var(--blast-gold);
+}
+
+.match-card.status-COMPLETED {
+  border-color: var(--bomber-green);
+}
+
+.match-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.65rem;
+  font-family: var(--font-arcade);
+  font-size: 0.6rem;
+}
+
+.match-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 0.75rem;
+}
+
+.slot-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: #0f172a;
+  border: 2px solid #334155;
+}
+
+.slot-row.winner {
+  border-color: var(--bomber-green);
+  background: rgba(34, 197, 94, 0.18);
+}
+
+.slot-row.loser {
+  border-color: var(--bomber-red);
+  opacity: 0.72;
+}
+
+.slot-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  flex: 1;
+  font-weight: 700;
+}
+
+/* Grand Final Arena (3 vs 6 Handicap) */
+.grand-final-arena {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.1rem;
+}
+
+.finalist-card {
+  background: #1e293b;
+  border: 3px solid #64748b;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  box-shadow: 5px 5px 0 #020617;
+}
+
+.finalist-card.origin-WINNERS {
+  border-color: var(--blast-gold);
+}
+
+.finalist-card.origin-LOSERS {
+  border-color: var(--bomber-pink);
+}
+
+.finalist-card.is-champion {
+  border-color: var(--bomber-green);
+  background: linear-gradient(180deg, #14532d 0%, #0f172a 100%);
+}
+
+.origin-badge {
+  display: inline-block;
+  font-family: var(--font-arcade);
+  font-size: 0.55rem;
+  padding: 0.3rem 0.5rem;
+  background: #0f172a;
+  border: 2px solid currentColor;
+}
+
+.win-pip-bar {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+
+.win-pip {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--blast-gold);
+  background: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win-pip.filled {
+  background: var(--blast-flame);
+}
+
+/* Champion Banner */
+.champion-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.15rem 1.5rem;
+  margin-bottom: 1.1rem;
+  background: linear-gradient(90deg, #713f12 0%, #b45309 50%, #713f12 100%);
+  border: 4px solid var(--blast-gold);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.champion-banner h2 {
+  font-family: var(--font-arcade);
+  font-size: 0.95rem;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Players Status Roster */
+.players-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 960px) {
+  .arena-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .player-form {
+    grid-template-columns: 1fr;
+  }
+}

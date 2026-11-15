@@ -149,7 +149,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | MGMT-01 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-02 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-03 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
-| MGMT-04 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Tasks | In Tasks |
+| MGMT-04 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Implementing |
 
 **ID format:** `[CATEGORY]-[NUMBER]`
 

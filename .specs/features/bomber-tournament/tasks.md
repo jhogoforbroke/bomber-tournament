@@ -213,10 +213,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] `public/index.html` and `public/styles.css` define the Bomberman arcade layout, fonts, color tokens, SVG sprite gallery, and accessible containers for all tournament phases
-- [ ] Integration test written in `tests/integration/frontend-assets.test.js` verifying HTTP delivery of `index.html` and `styles.css`, Bomberman typography/palette tokens, and SVG sprites for all 8 Bomberman colors
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 32 tests pass across unit and integration suites
+- [x] `public/index.html` and `public/styles.css` define the Bomberman arcade layout, fonts, color tokens, SVG sprite gallery, and accessible containers for all tournament phases
+- [x] Integration test written in `tests/integration/frontend-assets.test.js` verifying HTTP delivery of `index.html` and `styles.css`, Bomberman typography/palette tokens, and SVG sprites for all 8 Bomberman colors
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 32 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: full

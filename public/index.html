@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SUPER BOMBERMAN TOURNAMENT ARENA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Chakra+Petch:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Inline SVG Sprite Sheet: 8 Bomberman Colors + Bomb + Explosion + Brick + Trophy -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" aria-hidden="true">
+    <!-- Base Bomberman Character Template in 8 Classic Colors -->
+    <symbol id="sprite-bomber-white" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ff3860" />
+      <rect x="15" y="6" width="2" height="3" fill="#ffd866" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#f8fafc" stroke="#1e293b" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#2563eb" />
+    </symbol>
+
+    <symbol id="sprite-bomber-black" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ff3860" />
+      <rect x="15" y="6" width="2" height="3" fill="#ffd866" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#1e293b" stroke="#94a3b8" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#0f172a" />
+    </symbol>
+
+    <symbol id="sprite-bomber-red" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ffd866" />
+      <rect x="15" y="6" width="2" height="3" fill="#f97316" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#ef4444" stroke="#7f1d1d" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#dc2626" />
+    </symbol>
+
+    <symbol id="sprite-bomber-blue" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ff3860" />
+      <rect x="15" y="6" width="2" height="3" fill="#ffd866" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#3b82f6" stroke="#1e3a8a" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#1d4ed8" />
+    </symbol>
+
+    <symbol id="sprite-bomber-green" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ff3860" />
+      <rect x="15" y="6" width="2" height="3" fill="#ffd866" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#22c55e" stroke="#14532d" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#15803d" />
+    </symbol>
+
+    <symbol id="sprite-bomber-yellow" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ff3860" />
+      <rect x="15" y="6" width="2" height="3" fill="#f97316" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#eab308" stroke="#713f12" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#ca8a04" />
+    </symbol>
+
+    <symbol id="sprite-bomber-pink" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ffd866" />
+      <rect x="15" y="6" width="2" height="3" fill="#f472b6" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#ec4899" stroke="#831843" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#db2777" />
+    </symbol>
+
+    <symbol id="sprite-bomber-aqua" viewBox="0 0 32 32">
+      <circle cx="16" cy="4" r="3" fill="#ff3860" />
+      <rect x="15" y="6" width="2" height="3" fill="#ffd866" />
+      <rect x="6" y="8" width="20" height="16" rx="6" fill="#06b6d4" stroke="#164e63" stroke-width="2" />
+      <rect x="9" y="11" width="14" height="10" rx="3" fill="#fed7aa" />
+      <rect x="12" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="18" y="13" width="2" height="5" fill="#0f172a" />
+      <rect x="10" y="24" width="12" height="6" rx="2" fill="#0891b2" />
+    </symbol>
+
+    <!-- Classic Bomb Icon -->
+    <symbol id="sprite-bomb" viewBox="0 0 32 32">
+      <path d="M18 6 Q23 2 26 5" stroke="#fbbf24" stroke-width="2.5" fill="none" />
+      <circle cx="26" cy="5" r="2.5" fill="#ef4444" />
+      <rect x="13" y="6" width="6" height="3" fill="#64748b" />
+      <circle cx="16" cy="18" r="10" fill="#0f172a" stroke="#334155" stroke-width="2" />
+      <circle cx="12" cy="14" r="2.5" fill="#94a3b8" />
+    </symbol>
+
+    <!-- Explosion Flame Icon -->
+    <symbol id="sprite-explosion" viewBox="0 0 32 32">
+      <polygon points="16,1 20,10 30,6 23,15 31,21 21,22 24,31 16,24 8,31 11,22 1,21 9,15 2,6 12,10" fill="#f97316" stroke="#ef4444" stroke-width="1.5" />
+      <polygon points="16,6 18,12 25,10 20,16 25,20 19,20 16,26 13,20 7,20 12,16 7,10 14,12" fill="#fde047" />
+    </symbol>
+
+    <!-- Destructible Brick Wall Icon -->
+    <symbol id="sprite-brick" viewBox="0 0 32 32">
+      <rect x="2" y="2" width="28" height="28" fill="#c2410c" stroke="#431407" stroke-width="2" />
+      <line x1="2" y1="11" x2="30" y2="11" stroke="#431407" stroke-width="2" />
+      <line x1="2" y1="21" x2="30" y2="21" stroke="#431407" stroke-width="2" />
+      <line x1="16" y1="2" x2="16" y2="11" stroke="#431407" stroke-width="2" />
+      <line x1="9" y1="11" x2="9" y2="21" stroke="#431407" stroke-width="2" />
+      <line x1="23" y1="11" x2="23" y2="21" stroke="#431407" stroke-width="2" />
+      <line x1="16" y1="21" x2="16" y2="30" stroke="#431407" stroke-width="2" />
+    </symbol>
+
+    <!-- Champion Golden Trophy Icon -->
+    <symbol id="sprite-trophy" viewBox="0 0 32 32">
+      <path d="M8 5 H24 V14 C24 19 20 22 16 22 C12 22 8 19 8 14 Z" fill="#facc15" stroke="#ca8a04" stroke-width="2" />
+      <path d="M8 7 H4 V13 C4 15 6 16 8 16" fill="none" stroke="#facc15" stroke-width="2.5" />
+      <path d="M24 7 H28 V13 C28 15 26 16 24 16" fill="none" stroke="#facc15" stroke-width="2.5" />
+      <rect x="14" y="22" width="4" height="5" fill="#eab308" />
+      <rect x="9" y="27" width="14" height="3" fill="#ca8a04" />
+    </symbol>
+  </svg>
+
+  <!-- Top Arcade HUD Header -->
+  <header class="arcade-header">
+    <div class="header-brand">
+      <svg class="hud-icon"><use href="#sprite-bomb" /></svg>
+      <div>
+        <h1 class="arcade-title">SUPER BOMBERMAN TOURNAMENT</h1>
+        <p class="arcade-subtitle">ARENA DE DUPLA ELIMINAÇÃO 4 JOGADORES • HANDICAP 3 VS 6 NA GRANDE FINAL</p>
+      </div>
+      <svg class="hud-icon"><use href="#sprite-explosion" /></svg>
+    </div>
+    <div id="active-tournament-badge" class="status-badge">SELECIONE OU CRIE UM TORNEIO</div>
+  </header>
+
+  <!-- Notification / Alert Banner -->
+  <div id="alert-banner" class="alert-banner hidden" role="alert" aria-live="polite"></div>
+
+  <!-- Main Workspace Grid -->
+  <main class="arena-layout">
+    <!-- Sidebar: Tournament Manager & File Storage -->
+    <aside class="sidebar-panel arcade-card" aria-label="Gerenciador de Torneios">
+      <div class="card-header">
+        <svg class="card-icon"><use href="#sprite-brick" /></svg>
+        <h2>TORNEIOS (.JSON)</h2>
+      </div>
+
+      <form id="create-tournament-form" class="arcade-form">
+        <label for="tournament-name-input">NOVO TORNEIO</label>
+        <div class="input-row">
+          <input
+            id="tournament-name-input"
+            name="name"
+            type="text"
+            placeholder="Ex: Copa Super Bomberman"
+            required
+            autocomplete="off"
+          />
+          <button id="create-tournament-btn" type="submit" class="btn btn-primary">CRIAR</button>
+        </div>
+      </form>
+
+      <div id="tournament-list" class="tournament-list" aria-label="Lista de torneios salvos"></div>
+    </aside>
+
+    <!-- Center Stage: Active Tournament Workspace -->
+    <section class="stage-panel">
+      <!-- Champion Celebration Banner -->
+      <section id="champion-banner" class="champion-banner hidden" aria-label="Campeão do Torneio"></section>
+
+      <!-- Navigation Tabs for Active Tournament -->
+      <nav id="phase-tabs" class="phase-tabs" aria-label="Abas do Torneio">
+        <button type="button" class="tab-btn active" data-tab="seeding">1. INSCRIÇÃO &amp; SEEDING</button>
+        <button type="button" class="tab-btn" data-tab="winners">2. WINNERS BRACKET</button>
+        <button type="button" class="tab-btn" data-tab="losers">3. LOSERS BRACKET</button>
+        <button type="button" class="tab-btn" data-tab="grand-final">4. GRANDE FINAL (3x6)</button>
+        <button type="button" class="tab-btn" data-tab="players">5. STATUS DOS JOGADORES</button>
+      </nav>
+
+      <!-- View 1: Player Registration & Seeding (DRAFT) -->
+      <section id="seeding-section" class="tab-panel arcade-card">
+        <div class="section-header-bar">
+          <div>
+            <h2>CADASTRO DE JOGADORES &amp; SEEDING INICIAL</h2>
+            <p class="helper-text">
+              Mínimo de 16 jogadores e sempre múltiplo de 4 (16, 20, 24, 28, 32... até 64). Vagas até a próxima potência de 2 recebem BOT/BYE automaticamente.
+            </p>
+          </div>
+          <div id="seeding-counter" class="counter-pill">0 / 16 JOGADORES</div>
+        </div>
+
+        <div class="seeding-controls-grid">
+          <form id="add-player-form" class="arcade-form player-form">
+            <div class="form-field">
+              <label for="player-name-input">NICKNAME DO BOMBER</label>
+              <input
+                id="player-name-input"
+                name="playerName"
+                type="text"
+                placeholder="Ex: Shirobon"
+                autocomplete="off"
+              />
+            </div>
+            <div class="form-field">
+              <label for="player-color-select">COR / SPRITE</label>
+              <select id="player-color-select" name="playerColor">
+                <option value="white">Branco (Shirobon)</option>
+                <option value="black">Preto (Kurobon)</option>
+                <option value="red">Vermelho (Akabon)</option>
+                <option value="blue">Azul (Aobon)</option>
+                <option value="green">Verde (Midoribon)</option>
+                <option value="yellow">Amarelo (Kiirobon)</option>
+                <option value="pink">Rosa (Momobon)</option>
+                <option value="aqua">Aqua (Mizubon)</option>
+              </select>
+            </div>
+            <button id="add-player-btn" type="submit" class="btn btn-accent">+ ADICIONAR JOGADOR</button>
+          </form>
+
+          <div class="quick-actions-bar">
+            <button id="quick-fill-16-btn" type="button" class="btn btn-secondary">COMPLETAR 16 BOMBERS</button>
+            <button id="quick-fill-20-btn" type="button" class="btn btn-secondary">COMPLETAR 20 (COM BOT/BYE)</button>
+            <button id="shuffle-players-btn" type="button" class="btn btn-warning">SORTEAR SEEDING (SHUFFLE)</button>
+            <button id="start-tournament-btn" type="button" class="btn btn-fire">INICIAR TORNEIO (GERAR CHAVES)</button>
+          </div>
+        </div>
+
+        <div id="seeding-players-list" class="seeding-grid" aria-label="Lista de Seeding"></div>
+      </section>
+
+      <!-- View 2: Winners Bracket -->
+      <section id="winners-section" class="tab-panel arcade-card hidden">
+        <div class="section-header-bar">
+          <div>
+            <h2>WINNERS BRACKET (CHAVE DOS INVICTOS)</h2>
+            <p class="helper-text">
+              Cada arena tem 4 jogadores: selecione exatamente os 2 sobreviventes. Os 2 vencedores avançam na Winners e os 2 perdedores caem para a Losers Bracket!
+            </p>
+          </div>
+        </div>
+        <div id="winners-bracket-container" class="bracket-columns"></div>
+      </section>
+
+      <!-- View 3: Losers Bracket -->
+      <section id="losers-section" class="tab-panel arcade-card hidden">
+        <div class="section-header-bar">
+          <div>
+            <h2>LOSERS BRACKET (REPESCAGEM - VIDA EXTRA)</h2>
+            <p class="helper-text">
+              Cada arena tem 4 jogadores: os 2 vencedores avançam na Losers até a Grande Final e os 2 perdedores são ELIMINADOS do torneio!
+            </p>
+          </div>
+        </div>
+        <div id="losers-bracket-container" class="bracket-columns"></div>
+      </section>
+
+      <!-- View 4: Grand Final Arena (3 vs 6 Wins Handicap) -->
+      <section id="grand-final-section" class="tab-panel arcade-card hidden">
+        <div class="section-header-bar">
+          <div>
+            <h2>ARENA DA GRANDE FINAL • HANDICAP 3 VS 6 VITÓRIAS</h2>
+            <p class="helper-text">
+              Finalistas vindos da Winners Bracket precisam de 3 vitórias de mapa para o título. Finalistas vindos da Losers Bracket precisam de 6 vitórias!
+            </p>
+          </div>
+          <button id="undo-grand-final-btn" type="button" class="btn btn-warning">DESFAZER ÚLTIMA RODADA</button>
+        </div>
+        <div id="grand-final-container" class="grand-final-arena"></div>
+      </section>
+
+      <!-- View 5: Players Status Roster -->
+      <section id="players-section" class="tab-panel arcade-card hidden">
+        <div class="section-header-bar">
+          <h2>STATUS GERAL DOS PARTICIPANTES</h2>
+        </div>
+        <div id="players-status-container" class="players-status-grid"></div>
+      </section>
+    </section>
+  </main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
