@@ -148,10 +148,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] Exports `createFileRepository(dataDir)` with `save`, `getById`, `list`, and `remove`
-- [ ] Integration tests written in `tests/integration/file-repository.test.js` verifying `.json` persistence, atomic `.tmp` rename without leftover temp files, listing, and deletion
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 22 tests pass across unit and integration suites
+- [x] Exports `createFileRepository(dataDir)` with `save`, `getById`, `list`, and `remove`
+- [x] Integration tests written in `tests/integration/file-repository.test.js` verifying `.json` persistence, atomic `.tmp` rename without leftover temp files, listing, and deletion
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 22 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: full

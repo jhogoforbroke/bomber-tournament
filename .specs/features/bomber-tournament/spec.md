@@ -130,7 +130,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| TOURN-01 | P1: Criação de Torneio, Cadastro de Jogadores e Seeding | Execute | Implementing |
+| TOURN-01 | P1: Criação de Torneio, Cadastro de Jogadores e Seeding | Execute | Verified |
 | TOURN-02 | P1: Criação de Torneio, Cadastro de Jogadores e Seeding | Execute | Verified |
 | TOURN-03 | P1: Criação de Torneio, Cadastro de Jogadores e Seeding | Execute | Verified |
 | TOURN-04 | P1: Criação de Torneio, Cadastro de Jogadores e Seeding | Execute | Verified |
@@ -146,7 +146,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | FINAL-03 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
 | FINAL-04 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
 | FINAL-05 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
-| MGMT-01 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Tasks | In Tasks |
+| MGMT-01 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-02 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-03 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-04 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Tasks | In Tasks |
