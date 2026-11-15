@@ -129,4 +129,77 @@ describe('T1: Tournament & Player Seeding Domain', () => {
     assert.ok(ConflictError);
     assert.ok(NotFoundError);
   });
+
+  it('COLOR-C1: adding a player without color picks from least-used Bomberman colors', () => {
+    const t = createTournament({ name: 'Balanced Pool Test' });
+    // Pre-populate 7 of the 8 colors (all except 'aqua')
+    const sevenColors = BOMBERMAN_COLORS.filter((c) => c !== 'aqua');
+    for (const c of sevenColors) {
+      addPlayer(t, { name: `Fixed_${c}`, color: c });
+    }
+
+    // Adding a player without color must pick 'aqua' since it is the only color with count 0
+    const p8 = addPlayer(t, { name: 'Random8' });
+    assert.equal(p8.color, 'aqua');
+
+    // Now all 8 colors have count 1. With deterministic rng returning 0.5, it picks index 4 ('green')
+    const p9 = addPlayer(t, { name: 'Random9', rng: () => 0.5 });
+    assert.equal(p9.color, BOMBERMAN_COLORS[4]);
+  });
+
+  it('COLOR-C2: adding 8 players without color assigns all 8 colors once before repeating', () => {
+    const t = createTournament({ name: '8 Unique Colors Test' });
+    // Use a pseudo-random sequence that varies across [0, 1)
+    let seed = 7;
+    const rng = () => {
+      seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+      return (seed % 1000) / 1000;
+    };
+
+    for (let i = 1; i <= 8; i++) {
+      addPlayer(t, { name: `Bomber_${i}`, rng });
+    }
+
+    const first8Colors = t.players.map((p) => p.color);
+    assert.equal(new Set(first8Colors).size, 8);
+    assert.deepEqual([...first8Colors].sort(), [...BOMBERMAN_COLORS].sort());
+    // Also verify the order was not simply the static BOMBERMAN_COLORS order
+    assert.notDeepEqual(first8Colors, [...BOMBERMAN_COLORS]);
+
+    // Adding 8 more players (total 16) results in exactly 2 of each color
+    for (let i = 9; i <= 16; i++) {
+      addPlayer(t, { name: `Bomber_${i}`, rng });
+    }
+    const counts = Object.fromEntries(BOMBERMAN_COLORS.map((c) => [c, 0]));
+    for (const p of t.players) {
+      counts[p.color]++;
+    }
+    for (const c of BOMBERMAN_COLORS) {
+      assert.equal(counts[c], 2);
+    }
+  });
+
+  it('COLOR-C3: passing an explicit invalid color throws ValidationError 400', () => {
+    const t = createTournament({ name: 'Invalid Explicit Color Test' });
+    assert.throws(
+      () => addPlayer(t, { name: 'BadColorBomber', color: 'purple' }),
+      (err) => err instanceof ValidationError && err.statusCode === 400 && /cor/i.test(err.message)
+    );
+  });
+
+  it('COLOR-C6: removing a player and adding a new one without color prioritizes the freed color', () => {
+    const t = createTournament({ name: 'Freed Color Test' });
+    for (let i = 1; i <= 8; i++) {
+      addPlayer(t, { name: `Bomber_${i}` });
+    }
+
+    // All 8 colors are used once. Remove player #3 and record their color
+    const removedPlayer = t.players[2];
+    const freedColor = removedPlayer.color;
+    removePlayer(t, removedPlayer.id);
+
+    // Next player added without color must receive the freed color (since its count is 0 while others are 1)
+    const replacement = addPlayer(t, { name: 'ReplacementBomber' });
+    assert.equal(replacement.color, freedColor);
+  });
 });

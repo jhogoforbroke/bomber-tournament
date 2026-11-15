@@ -76,13 +76,30 @@ function normalizeSeeds(tournament) {
   tournament.updatedAt = new Date().toISOString();
 }
 
-export function addPlayer(tournament, { name, color = 'white' }) {
+export function pickBalancedRandomColor(tournament, rng = Math.random) {
+  const counts = new Map(BOMBERMAN_COLORS.map((c) => [c, 0]));
+  const humanPlayers = (tournament?.players || []).filter((p) => !p.isBot);
+  for (const player of humanPlayers) {
+    if (counts.has(player.color)) {
+      counts.set(player.color, counts.get(player.color) + 1);
+    }
+  }
+  const minCount = Math.min(...counts.values());
+  const leastUsedColors = BOMBERMAN_COLORS.filter((c) => counts.get(c) === minCount);
+  const randomIndex = Math.floor(rng() * leastUsedColors.length);
+  return leastUsedColors[randomIndex];
+}
+
+export function addPlayer(tournament, { name, color, rng = Math.random } = {}) {
   assertDraftState(tournament);
   const trimmedName = typeof name === 'string' ? name.trim() : '';
   if (!trimmedName) {
     throw new ValidationError('O nome do jogador não pode ser vazio.');
   }
-  const normalizedColor = typeof color === 'string' ? color.trim().toLowerCase() : 'white';
+  const hasExplicitColor = typeof color === 'string' && color.trim().length > 0;
+  const normalizedColor = hasExplicitColor
+    ? color.trim().toLowerCase()
+    : pickBalancedRandomColor(tournament, rng);
   if (!BOMBERMAN_COLORS.includes(normalizedColor)) {
     throw new ValidationError(
       `Cor de Bomberman inválida (${color}). Cores permitidas: ${BOMBERMAN_COLORS.join(', ')}.`
