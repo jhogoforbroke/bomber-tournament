@@ -96,6 +96,21 @@ describe('T7: Bomberman Arcade HTML Layout, Retro Pixel CSS and SVG Sprites', ()
     assert.equal(formContent.includes('<select'), false);
   });
 
+  it('GRAPH-C1: index.html includes bracket-graph tab button, section, podium banner, and download button', async () => {
+    const res = await fetch(`${baseUrl}/`);
+    assert.equal(res.status, 200);
+    const html = await res.text();
+
+    assert.match(
+      html,
+      /<button[^>]*class="tab-btn"[^>]*data-tab="bracket-graph"[^>]*>6\.\s*GRÁFICO DO TORNEIO<\/button>/i
+    );
+    assert.ok(html.includes('id="bracket-graph-section"'));
+    assert.ok(html.includes('id="download-bracket-image-btn"'));
+    assert.ok(html.includes('id="bracket-podium-banner"'));
+    assert.ok(html.includes('id="bracket-graph-container"'));
+  });
+
   it('serves styles.css with Bomberman arcade pixel typography, 8-color palette tokens, and responsive rules', async () => {
     const res = await fetch(`${baseUrl}/styles.css`);
     assert.equal(res.status, 200);

@@ -107,10 +107,10 @@ T4
 
 **Done when**:
 
-- [ ] `public/index.html` includes `<button type="button" class="tab-btn" data-tab="bracket-graph">6. GRÁFICO DO TORNEIO</button>` inside `#phase-tabs` and `<section id="bracket-graph-section" ...>` with `#download-bracket-image-btn` (`disabled` by default), `#bracket-podium-banner`, and `#bracket-graph-container`
-- [ ] Integration test added in `tests/integration/frontend-assets.test.js` verifying the new tab button and section IDs in served HTML
-- [ ] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 46 tests pass across unit and integration suites
+- [x] `public/index.html` includes `<button type="button" class="tab-btn" data-tab="bracket-graph">6. GRÁFICO DO TORNEIO</button>` inside `#phase-tabs` and `<section id="bracket-graph-section" ...>` with `#download-bracket-image-btn` (`disabled` by default), `#bracket-podium-banner`, and `#bracket-graph-container`
+- [x] Integration test added in `tests/integration/frontend-assets.test.js` verifying the new tab button and section IDs in served HTML
+- [x] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 46 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: full

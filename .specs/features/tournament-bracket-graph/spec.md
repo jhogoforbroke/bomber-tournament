@@ -105,7 +105,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
-| GRAPH-01 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |
+| GRAPH-01 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Execute | Verified |
 | GRAPH-02 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |
 | GRAPH-03 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |
 | GRAPH-04 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |

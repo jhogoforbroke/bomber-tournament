@@ -184,6 +184,7 @@
         <button type="button" class="tab-btn" data-tab="losers">3. LOSERS BRACKET</button>
         <button type="button" class="tab-btn" data-tab="grand-final">4. GRANDE FINAL (3x6)</button>
         <button type="button" class="tab-btn" data-tab="players">5. STATUS DOS JOGADORES</button>
+        <button type="button" class="tab-btn" data-tab="bracket-graph">6. GRÁFICO DO TORNEIO</button>
       </nav>
 
       <!-- View 1: Player Registration & Seeding (DRAFT) -->
@@ -270,6 +271,23 @@
           <h2>STATUS GERAL DOS PARTICIPANTES</h2>
         </div>
         <div id="players-status-container" class="players-status-grid"></div>
+      </section>
+
+      <!-- View 6: Tournament Bracket Graph & Podium Export -->
+      <section id="bracket-graph-section" class="tab-panel arcade-card hidden">
+        <div class="section-header-bar">
+          <div>
+            <h2>GRÁFICO DE CHAVEAMENTO DO TORNEIO &amp; PÓDIO TOP 4</h2>
+            <p class="helper-text">
+              Acompanhe em tempo real todas as chaves conectadas (Winners, Losers e Grande Final) e baixe a imagem oficial com o 1º, 2º, 3º e 4º lugar ao concluir o torneio.
+            </p>
+          </div>
+          <button id="download-bracket-image-btn" type="button" class="btn btn-fire" disabled>
+            BAIXAR IMAGEM DO TORNEIO (.PNG)
+          </button>
+        </div>
+        <div id="bracket-podium-banner" class="podium-banner hidden" aria-label="Pódio 1º ao 4º Lugar"></div>
+        <div id="bracket-graph-container" class="bracket-graph-tree" aria-label="Gráfico de Chaveamento"></div>
       </section>
     </section>
   </main>
