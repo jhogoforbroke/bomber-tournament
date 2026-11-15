@@ -8,9 +8,9 @@ Organizar torneios presenciais ou online de Bomberman para 16 ou mais jogadores 
 
 ## Goals
 
-- [ ] Permitir criar, listar, carregar e excluir múltiplos torneios persistidos em arquivos de texto (`.json`) com suporte a 16 ou mais jogadores (múltiplos de 4, com preenchimento automático de `BOT/BYE` quando necessário).
-- [ ] Automatizar 100% da progressão das chaves Winners e Losers (4 jogadores por partida, 2 avançam e 2 caem/saem) com suporte a desfazer partidas cujos confrontos seguintes ainda não foram concluídos.
-- [ ] Controlar a Grande Final de 4 jogadores com handicap automático (meta de 3 vitórias para finalistas da Winners e 6 vitórias para finalistas da Losers) em uma interface temática de Bomberman.
+- [x] Permitir criar, listar, carregar e excluir múltiplos torneios persistidos em arquivos de texto (`.json`) com suporte a 16 ou mais jogadores (múltiplos de 4, com preenchimento automático de `BOT/BYE` quando necessário).
+- [x] Automatizar 100% da progressão das chaves Winners e Losers (4 jogadores por partida, 2 avançam e 2 caem/saem) com suporte a desfazer partidas cujos confrontos seguintes ainda não foram concluídos.
+- [x] Controlar a Grande Final de 4 jogadores com handicap automático (meta de 3 vitórias para finalistas da Winners e 6 vitórias para finalistas da Losers) em uma interface temática de Bomberman.
 
 ## Out of Scope
 
@@ -149,7 +149,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | MGMT-01 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-02 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-03 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
-| MGMT-04 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Implementing |
+| MGMT-04 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 
 **ID format:** `[CATEGORY]-[NUMBER]`
 
@@ -170,6 +170,6 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 How we know the feature is successful:
 
-- [ ] Torneios com 16, 20, 24, 28 ou 32 jogadores avançam do estado `DRAFT` até `COMPLETED` com 100% das regras de Winners, Losers e Grande Final (3 vs 6 vitórias) validadas por testes automatizados.
-- [ ] Todos os dados de torneios persistem em arquivos simples de texto (`.json`) e sobrevivem ao reinício do servidor Node.js sem perda de estado.
-- [ ] A interface web apresenta visual temático de Bomberman (fontes arcade, cores e ícones dos personagens/bombas) e permite operar todo o ciclo do torneio pelo navegador.
+- [x] Torneios com 16, 20, 24, 28 ou 32 jogadores avançam do estado `DRAFT` até `COMPLETED` com 100% das regras de Winners, Losers e Grande Final (3 vs 6 vitórias) validadas por testes automatizados.
+- [x] Todos os dados de torneios persistem em arquivos simples de texto (`.json`) e sobrevivem ao reinício do servidor Node.js sem perda de estado.
+- [x] A interface web apresenta visual temático de Bomberman (fontes arcade, cores e ícones dos personagens/bombas) e permite operar todo o ciclo do torneio pelo navegador.

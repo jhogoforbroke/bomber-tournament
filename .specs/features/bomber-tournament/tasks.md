@@ -234,10 +234,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] `public/app.js` implements all interactive handlers and state rendering for `DRAFT`, `IN_PROGRESS`, `GRAND_FINAL`, and `COMPLETED`
-- [ ] Integration test written in `tests/integration/frontend-flow.test.js` verifying `app.js` delivery and UI state rendering helpers for Winners, Losers, and Grand Final handicap
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 34 tests pass across unit and integration suites
+- [x] `public/app.js` implements all interactive handlers and state rendering for `DRAFT`, `IN_PROGRESS`, `GRAND_FINAL`, and `COMPLETED`
+- [x] Integration test written in `tests/integration/frontend-flow.test.js` verifying `app.js` delivery and UI state rendering helpers for Winners, Losers, and Grand Final handicap
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 34 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: build
@@ -324,7 +324,7 @@ The feature's live state, written as it happens - a compaction gives no warning.
 
 **Settled mid-build:** none
 **Dispatched:** none
-**Walked:** pending
+**Walked:** P1 Seeding (criação de torneio em `/`, preenchimento de 16/20 jogadores com cores Bomberman, shuffle/reordenação e início gerando arenas de 4 slots), P1 Chaves Winners/Losers (seleção de 2 sobreviventes por partida e progressão até os 4 finalistas), P1 Grande Final 3x6 (vitórias +1 com meta 3 para Winners e 6 para Losers, banner de Campeão e undo de rodada), P2 Gestão e Undo (alternância/exclusão de torneios `.json`, desfazer partida `READY` e bloqueio `409` quando dependente concluída)
 
 ---
 
