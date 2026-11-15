@@ -196,4 +196,32 @@ describe('T5: Express App & Tournament Setup REST Endpoints', () => {
     const bodyMatch = await resMatch.json();
     assert.ok(bodyMatch.error);
   });
+
+  it('COLOR-C7: POST /api/tournaments/:id/players without color returns 201 with valid Bomberman color', async () => {
+    const allowedColors = ['white', 'black', 'red', 'blue', 'green', 'yellow', 'pink', 'aqua'];
+    const t = await (
+      await fetch(`${baseUrl}/api/tournaments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: 'Random Color API Cup' })
+      })
+    ).json();
+
+    for (let i = 1; i <= 8; i++) {
+      const res = await fetch(`${baseUrl}/api/tournaments/${t.id}/players`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: `Bomber_${i}` })
+      });
+      assert.equal(res.status, 201);
+      const body = await res.json();
+      assert.equal(body.players.length, i);
+      assert.ok(allowedColors.includes(body.players[i - 1].color));
+    }
+
+    const finalTournament = await (await fetch(`${baseUrl}/api/tournaments/${t.id}`)).json();
+    const assignedColors = finalTournament.players.map((p) => p.color);
+    assert.equal(new Set(assignedColors).size, 8);
+    assert.deepEqual([...assignedColors].sort(), [...allowedColors].sort());
+  });
 });

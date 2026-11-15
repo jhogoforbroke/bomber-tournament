@@ -66,7 +66,7 @@ describe('T7: Bomberman Arcade HTML Layout, Retro Pixel CSS and SVG Sprites', ()
       'seeding-section',
       'add-player-form',
       'player-name-input',
-      'player-color-select',
+      'add-player-btn',
       'quick-fill-16-btn',
       'quick-fill-20-btn',
       'shuffle-players-btn',
@@ -79,6 +79,21 @@ describe('T7: Bomberman Arcade HTML Layout, Retro Pixel CSS and SVG Sprites', ()
     for (const id of requiredIds) {
       assert.ok(html.includes(`id="${id}"`), `Expected container/control #${id} in index.html`);
     }
+  });
+
+  it('COLOR-C4: add-player-form contains nickname input and submit button without player-color-select', async () => {
+    const res = await fetch(`${baseUrl}/`);
+    assert.equal(res.status, 200);
+    const html = await res.text();
+
+    const formMatch = html.match(/<form[^>]*id="add-player-form"[^>]*>([\s\S]*?)<\/form>/i);
+    assert.ok(formMatch, 'Expected #add-player-form in index.html');
+    const formContent = formMatch[1];
+
+    assert.ok(formContent.includes('id="player-name-input"'));
+    assert.ok(formContent.includes('id="add-player-btn"'));
+    assert.equal(html.includes('id="player-color-select"'), false);
+    assert.equal(formContent.includes('<select'), false);
   });
 
   it('serves styles.css with Bomberman arcade pixel typography, 8-color palette tokens, and responsive rules', async () => {

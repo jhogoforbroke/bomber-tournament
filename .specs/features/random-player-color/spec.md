@@ -73,7 +73,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | COLOR-01 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
 | COLOR-02 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
 | COLOR-03 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
-| COLOR-04 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Tasks | In Tasks |
+| COLOR-04 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
 | COLOR-05 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Tasks | In Tasks |
 
 **ID format:** `[CATEGORY]-[NUMBER]`

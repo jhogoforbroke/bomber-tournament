@@ -98,10 +98,10 @@ T2 -> T3
 
 **Done when**:
 
-- [ ] `#add-player-form` in `public/index.html` renders `#player-name-input` and `#add-player-btn` without `#player-color-select`
-- [ ] Integration tests updated/added in `tests/integration/frontend-assets.test.js` and `tests/integration/api-tournaments.test.js` verifying absence of `#player-color-select` in `#add-player-form` and `201` response with balanced random color on `POST /api/tournaments/:id/players` without `color`
-- [ ] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 41 tests pass across unit and integration suites
+- [x] `#add-player-form` in `public/index.html` renders `#player-name-input` and `#add-player-btn` without `#player-color-select`
+- [x] Integration tests updated/added in `tests/integration/frontend-assets.test.js` and `tests/integration/api-tournaments.test.js` verifying absence of `#player-color-select` in `#add-player-form` and `201` response with balanced random color on `POST /api/tournaments/:id/players` without `color`
+- [x] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 41 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: full
