@@ -8,9 +8,9 @@ Durante e após o torneio, o organizador e os participantes precisam alternar en
 
 ## Goals
 
-- [ ] Adicionar uma aba dedicada (`6. GRÁFICO DO TORNEIO`) que exibe em tempo real o gráfico completo de chaveamento (Winners Bracket, Losers Bracket e Grande Final conectados visualmente).
-- [ ] Calcular e exibir em destaque o pódio com o 1º, 2º, 3º e 4º lugar ao concluir a Grande Final, ordenando os não-campeões pelo total absoluto de vitórias (`wins`), origem (`WINNERS` > `LOSERS`) e `seed` inicial.
-- [ ] Permitir baixar uma imagem PNG do torneio completo contendo em destaque os nomes dos participantes em 1º, 2º, 3º e 4º lugar e todas as chaves disputadas quando o torneio estiver concluído (`COMPLETED`).
+- [x] Adicionar uma aba dedicada (`6. GRÁFICO DO TORNEIO`) que exibe em tempo real o gráfico completo de chaveamento (Winners Bracket, Losers Bracket e Grande Final conectados visualmente).
+- [x] Calcular e exibir em destaque o pódio com o 1º, 2º, 3º e 4º lugar ao concluir a Grande Final, ordenando os não-campeões pelo total absoluto de vitórias (`wins`), origem (`WINNERS` > `LOSERS`) e `seed` inicial.
+- [x] Permitir baixar uma imagem PNG do torneio completo contendo em destaque os nomes dos participantes em 1º, 2º, 3º e 4º lugar e todas as chaves disputadas quando o torneio estiver concluído (`COMPLETED`).
 
 ## Out of Scope
 
@@ -106,15 +106,15 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | Requirement ID | Story | Phase | Status |
 | -------------- | ----- | ----- | ------ |
 | GRAPH-01 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Execute | Verified |
-| GRAPH-02 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |
-| GRAPH-03 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |
-| GRAPH-04 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Tasks | In Tasks |
+| GRAPH-02 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Execute | Verified |
+| GRAPH-03 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Execute | Verified |
+| GRAPH-04 | P1: Aba de Gráfico de Chaveamento em Tempo Real | Execute | Verified |
 | GRAPH-05 | P1: Cálculo e Destaque do Pódio (1º, 2º, 3º e 4º Lugar) | Execute | Verified |
-| GRAPH-06 | P1: Cálculo e Destaque do Pódio (1º, 2º, 3º e 4º Lugar) | Tasks | In Tasks |
+| GRAPH-06 | P1: Cálculo e Destaque do Pódio (1º, 2º, 3º e 4º Lugar) | Execute | Verified |
 | GRAPH-07 | P1: Cálculo e Destaque do Pódio (1º, 2º, 3º e 4º Lugar) | Execute | Verified |
-| GRAPH-08 | P1: Exportação de Imagem PNG do Torneio Completo com Pódio em Destaque | Tasks | In Tasks |
-| GRAPH-09 | P1: Exportação de Imagem PNG do Torneio Completo com Pódio em Destaque | Tasks | In Tasks |
-| GRAPH-10 | P1: Exportação de Imagem PNG do Torneio Completo com Pódio em Destaque | Tasks | In Tasks |
+| GRAPH-08 | P1: Exportação de Imagem PNG do Torneio Completo com Pódio em Destaque | Execute | Verified |
+| GRAPH-09 | P1: Exportação de Imagem PNG do Torneio Completo com Pódio em Destaque | Execute | Verified |
+| GRAPH-10 | P1: Exportação de Imagem PNG do Torneio Completo com Pódio em Destaque | Execute | Verified |
 
 **ID format:** `[CATEGORY]-[NUMBER]`
 
@@ -128,6 +128,6 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 How we know the feature is successful:
 
-- [ ] A aba `6. GRÁFICO DO TORNEIO` exibe o chaveamento completo (Winners, Losers e Grande Final conectados) em tempo real para qualquer torneio iniciado (16 a 64 jogadores).
-- [ ] Ao concluir o torneio, o pódio de 1º, 2º, 3º e 4º lugar é calculado deterministicamente (vitórias absolutas > origem Winners/Losers > seed inicial) e exibido em destaque na tela.
-- [ ] O botão de download gera e baixa uma imagem PNG completa com o pódio Top 4 em destaque e todas as chaves do torneio.
+- [x] A aba `6. GRÁFICO DO TORNEIO` exibe o chaveamento completo (Winners, Losers e Grande Final conectados) em tempo real para qualquer torneio iniciado (16 a 64 jogadores).
+- [x] Ao concluir o torneio, o pódio de 1º, 2º, 3º e 4º lugar é calculado deterministicamente (vitórias absolutas > origem Winners/Losers > seed inicial) e exibido em destaque na tela.
+- [x] O botão de download gera e baixa uma imagem PNG completa com o pódio Top 4 em destaque e todas as chaves do torneio.

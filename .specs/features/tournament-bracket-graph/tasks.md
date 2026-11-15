@@ -151,12 +151,12 @@ T4
 
 **Done when**:
 
-- [ ] `renderBracketGraphHtml(tournament)` renders the empty state in `DRAFT` and renders all `Winners Bracket` rounds, `Losers Bracket` rounds, and `Grande Final (3x6)` nodes with player names, Bomberman sprites, connection targets (`winnerTargets` / `loserTargets`), and match statuses in `IN_PROGRESS`, `GRAND_FINAL`, and `COMPLETED` (including `BOT/BYE` and `autoResolved` matches)
-- [ ] `renderBracketPodiumHtml(tournament)` renders the highlighted Top 4 podium (`1º LUGAR` to `4º LUGAR`) with participant names, colors/sprites, and Grand Final scores when `COMPLETED`, and empty when not `COMPLETED`
-- [ ] `#download-bracket-image-btn` is `disabled` in `DRAFT`, `IN_PROGRESS`, and `GRAND_FINAL`, enabled in `COMPLETED`, and `exportTournamentBracketPng` generates and downloads a valid `.png` image containing the tournament title, 1st–4th place names in highlight, and the full bracket tree while blocking export when `status !== 'COMPLETED'`
-- [ ] Integration tests added in `tests/integration/frontend-flow.test.js` covering all ACs and edge cases (`GRAPH-02`..`GRAPH-10` and Edge Cases 2 & 3)
-- [ ] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 51 tests pass across unit and integration suites
+- [x] `renderBracketGraphHtml(tournament)` renders the empty state in `DRAFT` and renders all `Winners Bracket` rounds, `Losers Bracket` rounds, and `Grande Final (3x6)` nodes with player names, Bomberman sprites, connection targets (`winnerTargets` / `loserTargets`), and match statuses in `IN_PROGRESS`, `GRAND_FINAL`, and `COMPLETED` (including `BOT/BYE` and `autoResolved` matches)
+- [x] `renderBracketPodiumHtml(tournament)` renders the highlighted Top 4 podium (`1º LUGAR` to `4º LUGAR`) with participant names, colors/sprites, and Grand Final scores when `COMPLETED`, and empty when not `COMPLETED`
+- [x] `#download-bracket-image-btn` is `disabled` in `DRAFT`, `IN_PROGRESS`, and `GRAND_FINAL`, enabled in `COMPLETED`, and `exportTournamentBracketPng` generates and downloads a valid `.png` image containing the tournament title, 1st–4th place names in highlight, and the full bracket tree while blocking export when `status !== 'COMPLETED'`
+- [x] Integration tests added in `tests/integration/frontend-flow.test.js` covering all ACs and edge cases (`GRAPH-02`..`GRAPH-10` and Edge Cases 2 & 3)
+- [x] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 51 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: build
@@ -212,8 +212,8 @@ Proof: run integration | ✔ GRAPH-C13: 20-player tournament with BOT/BYE render
 The feature's live state, written as it happens - a compaction gives no warning.
 
 **Settled mid-build:** none
-**Dispatched:** none
-**Walked:** pending
+**Dispatched:** Verifier at HEAD
+**Walked:** P1 stories verified end-to-end against live Express server (`GET /` serves `#phase-tabs` with `data-tab="bracket-graph"` and `#bracket-graph-section`; clicking `6. GRÁFICO DO TORNEIO` in `DRAFT` displays the helper message and `#download-bracket-image-btn[disabled]`; starting a 16- or 20-player tournament renders `.graph-track` for Winners, Losers, and Grande Final with `.graph-node` cards, Bomberman sprites, and `.graph-connector-badge` targets updating in real time on match submit/undo; completing the Grand Final displays `#bracket-podium-banner` with `1º LUGAR` to `4º LUGAR` ordered by `wins`, `origin`, and `seed`, enables `#download-bracket-image-btn`, and clicking it downloads `<slug>-chaveamento.png` with the Top 4 podium and full brackets).
 
 ---
 
