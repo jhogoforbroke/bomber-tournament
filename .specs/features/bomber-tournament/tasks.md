@@ -323,7 +323,7 @@ Proof: run unit | ✔ C23: 20, 24 and 28 player tournaments distribute BOT/BYE i
 The feature's live state, written as it happens - a compaction gives no warning.
 
 **Settled mid-build:** none
-**Dispatched:** none
+**Dispatched:** Verifier at 05406f3 (returned)
 **Walked:** P1 Seeding (criação de torneio em `/`, preenchimento de 16/20 jogadores com cores Bomberman, shuffle/reordenação e início gerando arenas de 4 slots), P1 Chaves Winners/Losers (seleção de 2 sobreviventes por partida e progressão até os 4 finalistas), P1 Grande Final 3x6 (vitórias +1 com meta 3 para Winners e 6 para Losers, banner de Campeão e undo de rodada), P2 Gestão e Undo (alternância/exclusão de torneios `.json`, desfazer partida `READY` e bloqueio `409` quando dependente concluída)
 
 ---

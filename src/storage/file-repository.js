@@ -1,7 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 import { NotFoundError, ValidationError } from '../domain/tournament.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const DEFAULT_DATA_DIR = path.resolve(__dirname, '..', '..', 'data', 'tournaments');
 
 function sanitizeId(id) {
   if (typeof id !== 'string' || !/^[a-zA-Z0-9_-]+$/.test(id)) {
@@ -11,7 +15,7 @@ function sanitizeId(id) {
 }
 
 export function createFileRepository(
-  dataDir = path.resolve(process.cwd(), 'data', 'tournaments')
+  dataDir = DEFAULT_DATA_DIR
 ) {
   const writeQueues = new Map();
 

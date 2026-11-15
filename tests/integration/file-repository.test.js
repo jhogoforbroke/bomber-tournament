@@ -3,8 +3,11 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import os from 'node:os';
+import { fileURLToPath } from 'node:url';
 import { createTournament, addPlayer, NotFoundError } from '../../src/domain/tournament.js';
 import { createFileRepository } from '../../src/storage/file-repository.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 describe('T4: Atomic JSON Text-File Repository', () => {
   let tempDir;
@@ -88,5 +91,11 @@ describe('T4: Atomic JSON Text-File Repository', () => {
 
     const finalDoc = await repo.getById(t.id);
     assert.equal(finalDoc.name, 'Save Final');
+  });
+
+  it('resolves default dataDir inside the project root directory regardless of cwd', () => {
+    const defaultRepo = createFileRepository();
+    const expectedPath = path.resolve(__dirname, '..', '..', 'data', 'tournaments');
+    assert.equal(defaultRepo.dataDir, expectedPath);
   });
 });

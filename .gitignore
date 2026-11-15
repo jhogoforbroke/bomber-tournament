@@ -147,3 +147,14 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Local tournament persistence data
+data/
+
+# Additional binary & installation artifacts
+*.node
+*.exe
+*.dll
+*.so
+*.dylib
+
