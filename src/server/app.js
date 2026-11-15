@@ -8,12 +8,9 @@ import {
   shufflePlayers,
   reorderPlayers
 } from '../domain/tournament.js';
-import {
-  startTournament,
-  recordMatchResult,
-  undoMatchResult
-} from '../domain/bracket.js';
+import { startTournament } from '../domain/bracket.js';
 import { createFileRepository } from '../storage/file-repository.js';
+import { registerMatchRoutes } from './routes-matches.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PUBLIC_DIR = path.resolve(__dirname, '..', '..', 'public');
@@ -123,26 +120,7 @@ export function createApp({ dataDir, matchRoutesRegistrar } = {}) {
   if (typeof matchRoutesRegistrar === 'function') {
     matchRoutesRegistrar(app, repo);
   } else {
-    // Default match route handlers before T6 wires dedicated routes-matches.js
-    app.post(
-      '/api/tournaments/:id/matches/:matchId/result',
-      asyncHandler(async (req, res) => {
-        const tournament = await repo.getById(req.params.id);
-        recordMatchResult(tournament, req.params.matchId, req.body?.winnerIds);
-        await repo.save(tournament);
-        res.json(tournament);
-      })
-    );
-
-    app.post(
-      '/api/tournaments/:id/matches/:matchId/undo',
-      asyncHandler(async (req, res) => {
-        const tournament = await repo.getById(req.params.id);
-        undoMatchResult(tournament, req.params.matchId);
-        await repo.save(tournament);
-        res.json(tournament);
-      })
-    );
+    registerMatchRoutes(app, repo);
   }
 
   // Centralized JSON error handler

@@ -190,10 +190,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] Exports `registerMatchRoutes(app, repo)` wired into `src/server/app.js`
-- [ ] Integration tests written in `tests/integration/api-matches.test.js` running a full 16-player tournament through Winners, Losers, match undo (`200` and `409`), and Grand Final (3-win and 6-win paths)
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 30 tests pass across unit and integration suites
+- [x] Exports `registerMatchRoutes(app, repo)` wired into `src/server/app.js`
+- [x] Integration tests written in `tests/integration/api-matches.test.js` running a full 16-player tournament through Winners, Losers, match undo (`200` and `409`), and Grand Final (3-win and 6-win paths)
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 30 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: build
