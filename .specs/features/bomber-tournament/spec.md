@@ -141,11 +141,11 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | BRACK-03 | P1: Progressão das Chaves Winners e Losers | Execute | Verified |
 | BRACK-04 | P1: Progressão das Chaves Winners e Losers | Execute | Verified |
 | BRACK-05 | P1: Progressão das Chaves Winners e Losers | Execute | Verified |
-| FINAL-01 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Tasks | In Tasks |
-| FINAL-02 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Tasks | In Tasks |
-| FINAL-03 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Tasks | In Tasks |
-| FINAL-04 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Tasks | In Tasks |
-| FINAL-05 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Tasks | In Tasks |
+| FINAL-01 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
+| FINAL-02 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
+| FINAL-03 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
+| FINAL-04 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
+| FINAL-05 | P1: Grande Final com Handicap (3 vs 6 Vitórias) | Execute | Verified |
 | MGMT-01 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Tasks | In Tasks |
 | MGMT-02 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |
 | MGMT-03 | P2: Correção de Partidas (Undo), Múltiplos Torneios e UI | Execute | Verified |

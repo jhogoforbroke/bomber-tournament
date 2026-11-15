@@ -125,10 +125,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] Exports `initGrandFinal`, `recordGrandFinalWin`, and `undoGrandFinalWin`
-- [ ] Unit tests written in `tests/unit/grand-final.test.js` covering 3-win Winners target, 6-win Losers target, and undo from `COMPLETED` to `GRAND_FINAL`
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js`
-- [ ] Test count: at least 19 unit tests pass across unit suite
+- [x] Exports `initGrandFinal`, `recordGrandFinalWin`, and `undoGrandFinalWin`
+- [x] Unit tests written in `tests/unit/grand-final.test.js` covering 3-win Winners target, 6-win Losers target, and undo from `COMPLETED` to `GRAND_FINAL`
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js`
+- [x] Test count: at least 19 unit tests pass across unit suite
 
 **Tests**: unit
 **Gate**: build
