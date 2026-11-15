@@ -104,10 +104,10 @@ T7 -> T8
 
 **Done when**:
 
-- [ ] Exports `startTournament`, `recordMatchResult`, `undoMatchResult`, and `findMatch`
-- [ ] Unit tests written in `tests/unit/bracket.test.js` covering 16-player and 20-player (`BOT/BYE`) brackets, Winners/Losers progression, undo, and `409` dependent-match guard
-- [ ] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js`
-- [ ] Test count: at least 14 unit tests pass across unit suite
+- [x] Exports `startTournament`, `recordMatchResult`, `undoMatchResult`, and `findMatch`
+- [x] Unit tests written in `tests/unit/bracket.test.js` covering 16-player and 20-player (`BOT/BYE`) brackets, Winners/Losers progression, undo, and `409` dependent-match guard
+- [x] Gate check passes: `PATH="/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js`
+- [x] Test count: at least 14 unit tests pass across unit suite
 
 **Tests**: unit
 **Gate**: quick
