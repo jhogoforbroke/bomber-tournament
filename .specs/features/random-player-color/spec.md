@@ -8,8 +8,8 @@ Atualmente, o formulário de inscrição de jogadores exige que o organizador ve
 
 ## Goals
 
-- [ ] Remover o seletor manual de cor/sprite (`#player-color-select`) do formulário de adição de jogador na interface web, mantendo apenas o campo de nickname e o botão de adicionar.
-- [ ] Atribuir automaticamente uma cor aleatória balanceada (sorteando entre as cores menos utilizadas no torneio atual antes de repetir) sempre que um jogador for adicionado sem cor informada (tanto no cadastro individual quanto em lote/preenchimento rápido).
+- [x] Remover o seletor manual de cor/sprite (`#player-color-select`) do formulário de adição de jogador na interface web, mantendo apenas o campo de nickname e o botão de adicionar.
+- [x] Atribuir automaticamente uma cor aleatória balanceada (sorteando entre as cores menos utilizadas no torneio atual antes de repetir) sempre que um jogador for adicionado sem cor informada (tanto no cadastro individual quanto em lote/preenchimento rápido).
 
 ## Out of Scope
 
@@ -74,7 +74,7 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 | COLOR-02 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
 | COLOR-03 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
 | COLOR-04 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
-| COLOR-05 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Tasks | In Tasks |
+| COLOR-05 | P1: Sorteio Aleatório Balanceado de Cor e Cadastro Simplificado sem Seletor | Execute | Verified |
 
 **ID format:** `[CATEGORY]-[NUMBER]`
 
@@ -88,5 +88,5 @@ Each requirement gets a unique ID for tracking across design, tasks, and validat
 
 How we know the feature is successful:
 
-- [ ] O formulário `#add-player-form` exibe apenas o campo de Nickname e o botão de adicionar, sem dropdown de cor.
-- [ ] Ao cadastrar 8 ou 16 jogadores sem informar cor, as 8 cores de Bomberman são sorteadas de forma balanceada (1 de cada nos primeiros 8; 2 de cada nos primeiros 16) e em ordem aleatória.
+- [x] O formulário `#add-player-form` exibe apenas o campo de Nickname e o botão de adicionar, sem dropdown de cor.
+- [x] Ao cadastrar 8 ou 16 jogadores sem informar cor, as 8 cores de Bomberman são sorteadas de forma balanceada (1 de cada nos primeiros 8; 2 de cada nos primeiros 16) e em ordem aleatória.

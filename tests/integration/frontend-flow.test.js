@@ -182,4 +182,44 @@ describe('T8: Interactive Bomberman SPA Client Controller', () => {
       );
     assert.equal(updatedFinalist.wins, 2);
   });
+
+  it('COLOR-C5: addSinglePlayer and quickFillPlayers omit client color and receive balanced random colors', async () => {
+    const capturedBodies = [];
+    const wrappedFetch = async (url, options = {}) => {
+      if (String(url).endsWith('/players') && options.method === 'POST' && options.body) {
+        capturedBodies.push(JSON.parse(options.body));
+      }
+      return fetch(url, options);
+    };
+
+    const store = createSpaStore({ baseUrl, fetchImpl: wrappedFetch });
+    await store.createTournament('Copa Cores Aleatorias');
+
+    // Add 1 player via addSinglePlayer(name) without color argument
+    await store.addSinglePlayer('Shirobon');
+    assert.equal(capturedBodies.length, 1);
+    assert.deepEqual(capturedBodies[0], { name: 'Shirobon' });
+
+    // Quick-fill remaining 15 players to reach 16
+    await store.quickFillPlayers(16);
+    assert.equal(capturedBodies.length, 2);
+    assert.equal(Array.isArray(capturedBodies[1].players), true);
+    assert.equal(capturedBodies[1].players.length, 15);
+    for (const item of capturedBodies[1].players) {
+      assert.equal(Object.prototype.hasOwnProperty.call(item, 'color'), false);
+    }
+
+    // Verify all 16 players received balanced random colors (exactly 2 of each of the 8 colors)
+    const players = store.getState().activeTournament.players;
+    assert.equal(players.length, 16);
+    const allowedColors = ['white', 'black', 'red', 'blue', 'green', 'yellow', 'pink', 'aqua'];
+    const colorCounts = Object.fromEntries(allowedColors.map((c) => [c, 0]));
+    for (const p of players) {
+      assert.ok(allowedColors.includes(p.color));
+      colorCounts[p.color]++;
+    }
+    for (const c of allowedColors) {
+      assert.equal(colorCounts[c], 2);
+    }
+  });
 });

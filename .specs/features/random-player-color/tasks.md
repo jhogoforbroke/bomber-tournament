@@ -119,10 +119,10 @@ T2 -> T3
 
 **Done when**:
 
-- [ ] `addSinglePlayer(name)` and `quickFillPlayers(targetCount)` in `public/app.js` send player payloads without fixed client colors, and `mountDomApp` submits `#add-player-form` using only `#player-name-input`
-- [ ] Integration tests added in `tests/integration/frontend-flow.test.js` verifying `addSinglePlayer(name)` and `quickFillPlayers(16)` assign all 8 Bomberman colors in balanced fashion (2 of each across 16 players) without passing `color` from the client
-- [ ] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 42 tests pass across unit and integration suites
+- [x] `addSinglePlayer(name)` and `quickFillPlayers(targetCount)` in `public/app.js` send player payloads without fixed client colors, and `mountDomApp` submits `#add-player-form` using only `#player-name-input`
+- [x] Integration tests added in `tests/integration/frontend-flow.test.js` verifying `addSinglePlayer(name)` and `quickFillPlayers(16)` assign all 8 Bomberman colors in balanced fashion (2 of each across 16 players) without passing `color` from the client
+- [x] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 42 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: build
@@ -160,8 +160,8 @@ Proof: run integration | ✔ COLOR-C7: POST /api/tournaments/:id/players without
 The feature's live state, written as it happens - a compaction gives no warning.
 
 **Settled mid-build:** none
-**Dispatched:** none
-**Walked:** pending
+**Dispatched:** Verifier at HEAD (pending dispatch after commit)
+**Walked:** P1 verified against live Express server (`GET /` serves `#add-player-form` with `#player-name-input` and `#add-player-btn` and no `#player-color-select`; `store.addSinglePlayer('Shirobon')` and `store.quickFillPlayers(16)` on `/api/tournaments/:id/players` omit client `color` and render 16 seed cards with balanced random Bomberman SVG avatars `#sprite-bomber-<color>` across all 8 colors, 2 per color).
 
 ---
 

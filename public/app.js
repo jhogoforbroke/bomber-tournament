@@ -1,5 +1,3 @@
-const BOMBER_COLORS = ['white', 'black', 'red', 'blue', 'green', 'yellow', 'pink', 'aqua'];
-
 const DEFAULT_BOMBER_NAMES = [
   'Shirobon',
   'Kurobon',
@@ -346,13 +344,13 @@ export function createSpaStore({ baseUrl = '', fetchImpl = globalThis.fetch, onU
     setAlert('Torneio removido.', 'info');
   }
 
-  async function addSinglePlayer(name, color) {
+  async function addSinglePlayer(name) {
     if (!state.activeTournament) return null;
     state.activeTournament = await apiRequest(
       `/api/tournaments/${state.activeTournament.id}/players`,
       {
         method: 'POST',
-        body: JSON.stringify({ name, color })
+        body: JSON.stringify({ name })
       }
     );
     await refreshList();
@@ -377,8 +375,7 @@ export function createSpaStore({ baseUrl = '', fetchImpl = globalThis.fetch, onU
       if (!existingNames.has(candidate.toLowerCase())) {
         existingNames.add(candidate.toLowerCase());
         batch.push({
-          name: candidate,
-          color: BOMBER_COLORS[(existingHumans.length + batch.length) % BOMBER_COLORS.length]
+          name: candidate
         });
       }
       index++;
@@ -574,7 +571,6 @@ export function mountDomApp(doc = globalThis.document) {
     seedingCounter: doc.getElementById('seeding-counter'),
     addPlayerForm: doc.getElementById('add-player-form'),
     playerNameInput: doc.getElementById('player-name-input'),
-    playerColorSelect: doc.getElementById('player-color-select'),
     quickFill16Btn: doc.getElementById('quick-fill-16-btn'),
     quickFill20Btn: doc.getElementById('quick-fill-20-btn'),
     shuffleBtn: doc.getElementById('shuffle-players-btn'),
@@ -718,10 +714,9 @@ export function mountDomApp(doc = globalThis.document) {
   els.addPlayerForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const name = els.playerNameInput.value.trim();
-    const color = els.playerColorSelect.value;
     if (!name) return;
     safeRun(async () => {
-      await store.addSinglePlayer(name, color);
+      await store.addSinglePlayer(name);
       els.playerNameInput.value = '';
     });
   });
