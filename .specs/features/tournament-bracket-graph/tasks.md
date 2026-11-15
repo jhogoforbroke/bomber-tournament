@@ -128,10 +128,10 @@ T4
 
 **Done when**:
 
-- [ ] `public/styles.css` defines `.bracket-graph-tree`, `.graph-track`, `.graph-node`, `.graph-connector-badge`, `.podium-grid`, and `.podium-card` rules with responsive support
-- [ ] Integration test updated/added in `tests/integration/frontend-assets.test.js` verifying the bracket graph and podium CSS selectors are served
-- [ ] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
-- [ ] Test count: at least 47 tests pass across unit and integration suites
+- [x] `public/styles.css` defines `.bracket-graph-tree`, `.graph-track`, `.graph-node`, `.graph-connector-badge`, `.podium-grid`, and `.podium-card` rules with responsive support
+- [x] Integration test updated/added in `tests/integration/frontend-assets.test.js` verifying the bracket graph and podium CSS selectors are served
+- [x] Gate check passes: `PATH="/home/jmarinho/IA-RESOURCES-DEV/.local/bin:/home/jmarinho/.local/bin:$PATH" node --test --test-reporter=spec tests/unit/*.test.js tests/integration/*.test.js`
+- [x] Test count: at least 47 tests pass across unit and integration suites
 
 **Tests**: integration
 **Gate**: full

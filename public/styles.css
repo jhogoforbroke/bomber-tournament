@@ -567,6 +567,195 @@ select:focus {
   gap: 0.75rem;
 }
 
+/* Top 4 Podium Highlight Banner */
+.podium-banner {
+  margin-bottom: 1.5rem;
+  padding: 1.15rem;
+  background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+  border: 3px solid var(--blast-gold);
+  box-shadow: 5px 5px 0 #020617;
+}
+
+.podium-banner-title {
+  font-family: var(--font-arcade);
+  font-size: 0.8rem;
+  color: var(--blast-gold);
+  margin-bottom: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.podium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.85rem;
+}
+
+.podium-card {
+  background: #1e293b;
+  border: 3px solid #64748b;
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 4px 4px 0 #020617;
+}
+
+.podium-card.podium-place-1 {
+  border-color: var(--blast-gold);
+  background: linear-gradient(180deg, #422006 0%, #1e293b 100%);
+}
+
+.podium-card.podium-place-2 {
+  border-color: #cbd5e1;
+  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
+}
+
+.podium-card.podium-place-3 {
+  border-color: #f97316;
+  background: linear-gradient(180deg, #431407 0%, #1e293b 100%);
+}
+
+.podium-card.podium-place-4 {
+  border-color: var(--bomber-aqua);
+}
+
+.podium-rank-badge {
+  font-family: var(--font-arcade);
+  font-size: 0.68rem;
+  color: var(--blast-gold);
+}
+
+.podium-player-name {
+  font-family: var(--font-arcade);
+  font-size: 0.78rem;
+  color: #fff;
+  word-break: break-word;
+}
+
+/* Tournament Bracket Tree Graph */
+.bracket-graph-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.graph-track {
+  background: #0b1120;
+  border: 3px solid #334155;
+  padding: 1rem;
+  box-shadow: 4px 4px 0 #020617;
+}
+
+.graph-track-title {
+  font-family: var(--font-arcade);
+  font-size: 0.75rem;
+  color: var(--blast-gold);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 2px solid #334155;
+}
+
+.graph-rounds-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.graph-round-column {
+  min-width: 270px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.85rem;
+  position: relative;
+}
+
+.graph-round-column:not(:last-child)::after {
+  content: '➔';
+  position: absolute;
+  right: -1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-arcade);
+  font-size: 0.8rem;
+  color: var(--blast-gold);
+}
+
+.graph-node {
+  background: #1e293b;
+  border: 2px solid #475569;
+  padding: 0.65rem;
+  box-shadow: 3px 3px 0 #020617;
+}
+
+.graph-node.status-READY {
+  border-color: var(--blast-gold);
+}
+
+.graph-node.status-COMPLETED {
+  border-color: var(--bomber-green);
+}
+
+.graph-node-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-arcade);
+  font-size: 0.55rem;
+  color: var(--blast-gold);
+  margin-bottom: 0.45rem;
+}
+
+.graph-node-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.graph-slot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  padding: 0.3rem 0.45rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  font-size: 0.82rem;
+}
+
+.graph-slot.winner {
+  border-color: var(--bomber-green);
+  background: rgba(34, 197, 94, 0.16);
+}
+
+.graph-slot.loser {
+  border-color: var(--bomber-red);
+  opacity: 0.72;
+}
+
+.graph-node-connectors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  padding-top: 0.4rem;
+  border-top: 1px dashed #334155;
+}
+
+.graph-connector-badge {
+  font-family: var(--font-arcade);
+  font-size: 0.48rem;
+  padding: 0.2rem 0.4rem;
+  background: #0f172a;
+  border: 1px solid #475569;
+  color: var(--text-muted);
+}
+
 /* Responsive Breakpoints */
 @media (max-width: 960px) {
   .arena-layout {

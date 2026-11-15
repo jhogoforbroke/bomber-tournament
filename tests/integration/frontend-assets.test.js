@@ -142,4 +142,28 @@ describe('T7: Bomberman Arcade HTML Layout, Retro Pixel CSS and SVG Sprites', ()
     assert.ok(css.includes('.match-card'), 'Expected .match-card styling in styles.css');
     assert.ok(css.includes('.finalist-card'), 'Expected .finalist-card styling in styles.css');
   });
+
+  it('serves bracket graph tree and Top 4 podium highlight CSS rules in styles.css', async () => {
+    const res = await fetch(`${baseUrl}/styles.css`);
+    assert.equal(res.status, 200);
+    const css = await res.text();
+
+    const requiredSelectors = [
+      '.podium-banner',
+      '.podium-grid',
+      '.podium-card',
+      '.podium-place-1',
+      '.podium-place-2',
+      '.podium-place-3',
+      '.podium-place-4',
+      '.bracket-graph-tree',
+      '.graph-track',
+      '.graph-round-column',
+      '.graph-node',
+      '.graph-connector-badge'
+    ];
+    for (const selector of requiredSelectors) {
+      assert.ok(css.includes(selector), `Expected CSS selector ${selector} in styles.css`);
+    }
+  });
 });
